@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>org.501dev.alfred-find-keychain-password</string>
+	<key>category</key>
+	<string>Tools</string>
+	<key>connections</key>
+	<dict>
+		<key>7D94324E-223D-4086-8DB7-D520528D128B</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>F0CC0546-65F0-4255-BCD8-FA2537759A54</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>B46FEB44-F06A-4A38-9945-916B5C7EC1AE</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>F909F20A-7543-4A22-B95C-0DDE97640355</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>E9CE1ECD-A135-4DEB-9FF4-835CFC834CAA</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string>Paste the password (with line break) to front most app.</string>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>7D94324E-223D-4086-8DB7-D520528D128B</string>
+				<key>modifiers</key>
+				<integer>131072</integer>
+				<key>modifiersubtext</key>
+				<string>Paste the password to front most app.</string>
+			</dict>
+		</array>
+		<key>E9CE1ECD-A135-4DEB-9FF4-835CFC834CAA</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>E4A6ED76-088B-4AE1-A4FA-EB6C94E9185B</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>F909F20A-7543-4A22-B95C-0DDE97640355</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>4E9B9D55-D072-40C4-9306-59ACE6327422</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>meta2</string>
+	<key>description</key>
+	<string></string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Find Keychain Password</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>96</integer>
+				<key>script</key>
+				<string># encoding: utf-8
+
+require './keychain.rb'
+
+print get_password %q${query}$
+</string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>F909F20A-7543-4A22-B95C-0DDE97640355</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>4E9B9D55-D072-40C4-9306-59ACE6327422</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>96</integer>
+				<key>keyword</key>
+				<string>pass</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>script</key>
+				<string># encoding: utf-8
+
+require './keychain.rb'
+
+print get_passwords_xml %q${query}$
+</string>
+				<key>title</key>
+				<string>Find Keychain Password</string>
+				<key>type</key>
+				<integer>2</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>B46FEB44-F06A-4A38-9945-916B5C7EC1AE</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<true/>
+				<key>clipboardtext</key>
+				<string>{query}
+</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>E4A6ED76-088B-4AE1-A4FA-EB6C94E9185B</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>96</integer>
+				<key>script</key>
+				<string># encoding: utf-8
+
+require './keychain.rb'
+
+print get_password %q${query}$
+</string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>E9CE1ECD-A135-4DEB-9FF4-835CFC834CAA</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<true/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>F0CC0546-65F0-4255-BCD8-FA2537759A54</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>96</integer>
+				<key>script</key>
+				<string># encoding: utf-8
+
+require './keychain.rb'
+
+print get_password %q${query}$
+</string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>7D94324E-223D-4086-8DB7-D520528D128B</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>4E9B9D55-D072-40C4-9306-59ACE6327422</key>
+		<dict>
+			<key>ypos</key>
+			<real>130</real>
+		</dict>
+		<key>7D94324E-223D-4086-8DB7-D520528D128B</key>
+		<dict>
+			<key>ypos</key>
+			<real>370</real>
+		</dict>
+		<key>B46FEB44-F06A-4A38-9945-916B5C7EC1AE</key>
+		<dict>
+			<key>ypos</key>
+			<real>240</real>
+		</dict>
+		<key>E4A6ED76-088B-4AE1-A4FA-EB6C94E9185B</key>
+		<dict>
+			<key>ypos</key>
+			<real>250</real>
+		</dict>
+		<key>E9CE1ECD-A135-4DEB-9FF4-835CFC834CAA</key>
+		<dict>
+			<key>ypos</key>
+			<real>250</real>
+		</dict>
+		<key>F0CC0546-65F0-4255-BCD8-FA2537759A54</key>
+		<dict>
+			<key>ypos</key>
+			<real>370</real>
+		</dict>
+		<key>F909F20A-7543-4A22-B95C-0DDE97640355</key>
+		<dict>
+			<key>ypos</key>
+			<real>130</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>https://github.com/meta2/Alfred-FindKeychainPassword</string>
+</dict>
+</plist>
